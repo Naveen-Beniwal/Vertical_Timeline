@@ -1,0 +1,19 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins','sans-serif';
+  box-sizing: border-box;
+}
+body{
+  background:#202428;
+  
+}
+#bg {
+  width: 100vw;
+  
+  height: 190vh;
+  
+  position: absolute;
+  top: 0;
+  left: 0;
+}
