@@ -4,7 +4,9 @@ import wk from "./images/wk.jpg";
 import hack from "./images/hack.jpg";
 import speaker from "./images/speaker.jpg";
 import end from "./images/end.jpg";
-
+import * as THREE from "three";
+import RINGS from "vanta/dist/vanta.rings.min";
+import { useEffect } from "react";
 const events = [
   {
     title: "HACKATHON (ROUND-1)",
@@ -116,9 +118,28 @@ const events = [
   },
 ];
 const VerticalTimeline = () => {
+  useEffect(() => {
+    let effect;
+    try {
+      effect = RINGS({
+        el: "#bg",
+        THREE: THREE,
+        color: 0x000000,
+        speed: 0.7,
+        turbulence: 1,
+        amplitude: 0.3,
+      });
+    } catch (error) {
+      console.error("Error initializing Vanta.js RINGS:", error);
+    }
+
+    return () => {
+      if (effect) effect.destroy();
+    };
+  }, []);
   return (
     <>
-      <div className={style.timeline}>
+      <div className={style.timeline} id="bg">
         {events.map((event) => (
           <div className={`${style.container} ${style[event.classD]}`}>
             <img src={event.imgSrc} alt="error" />
